@@ -1,0 +1,65 @@
+# ============================================================
+#  VYAPARI — Render.com Blueprint
+#  Defines: Web Service (API) + PostgreSQL database
+#
+#  Deploy: Connect GitHub repo to Render, it reads this file.
+#  Docs:   https://render.com/docs/blueprint-spec
+# ============================================================
+
+databases:
+  - name: vyapari-db
+    databaseName: vyapari_db
+    user: vyapari
+    plan: free           # upgrade to starter ($7/mo) for production
+    ipAllowList: []      # allow all — backend connects via internal URL
+
+services:
+  - type: web
+    name: vyapari-api
+    plan: free           # upgrade to starter ($7/mo) for production
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      - key: PORT
+        value: 5000
+
+      # DATABASE_URL is injected automatically from the database above
+      - key: DATABASE_URL
+        fromDatabase:
+          name: vyapari-db
+          property: connectionString
+
+      # Generate these secrets with:
+      # node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+      - key: JWT_SECRET
+        generateValue: true     # Render generates a random value on first deploy
+
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+
+      - key: JWT_EXPIRES_IN
+        value: 15m
+
+      - key: JWT_REFRESH_EXPIRES_IN
+        value: 7d
+
+      # Set this AFTER frontend is deployed
+      # e.g. https://vyapari.vercel.app
+      - key: CORS_ORIGINS
+        value: https://vyapari.vercel.app
+
+      - key: LOG_LEVEL
+        value: info
+
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: 200
+
+      - key: AUTH_RATE_LIMIT_MAX
+        value: 10
