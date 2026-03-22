@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { Building2, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -8,7 +8,11 @@ import { INDIAN_STATES } from '../../utils/constants';
 import toast from 'react-hot-toast';
 
 export default function OnboardingScreen() {
-window.location.href = "/";                                                                                  
+   useEffect(() => {
+  if (window.location.pathname === "/login") {
+    window.location.href = "/dashboard";
+  }
+}, []);                                                                       
   const { addBusiness } = useAuth();
   const navigate = useNavigate();
   const [step,    setStep]    = useState(1);
