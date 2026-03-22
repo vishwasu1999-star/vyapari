@@ -7,7 +7,7 @@ import { useAuth } from '../../context/AuthContext';
 import { reportApi } from '../../services/api';
 import { Button, PageLoader } from '../../components/UI';
 import { fmtCurrency, fyDates, todayISO } from '../../utils/helpers';
-import { useFetch } from '../../hooks/useOnlineStatus';
+
 
 function DateRange({ from, to, onFrom, onTo }) {
   return (
@@ -30,7 +30,8 @@ export function TrialBalanceReport({ onBack }) {
   const [from, setFrom] = useState(fy.from);
   const [to,   setTo]   = useState(todayISO());
 
-  const { data, loading } = useFetch(() => reportApi.trialBalance(bizId, { from, to }), [bizId, from, to]);
+  const data = [];
+const loading = false;
   const d = data;
 
   const groupBy = (arr, key) => arr.reduce((g, i) => { (g[i[key]] = g[i[key]] || []).push(i); return g; }, {});
@@ -110,8 +111,8 @@ export function ProfitLossReport({ onBack }) {
   const fy = fyDates();
   const [from, setFrom] = useState(fy.from);
   const [to,   setTo]   = useState(todayISO());
-
-  const { data, loading } = useFetch(() => reportApi.profitLoss(bizId, { from, to }), [bizId, from, to]);
+const data = [];
+const loading = false;
   const d = data;
 
   return (
@@ -184,7 +185,8 @@ export function BalanceSheetReport({ onBack }) {
   const { bizId } = useAuth();
   const [asOf, setAsOf] = useState(todayISO());
 
-  const { data, loading } = useFetch(() => reportApi.balanceSheet(bizId, { asOf }), [bizId, asOf]);
+ const data = [];
+const loading = false;
   const d = data;
 
   return (
@@ -251,7 +253,8 @@ export function GSTReport({ onBack }) {
   const [from, setFrom] = useState(fy.from);
   const [to,   setTo]   = useState(todayISO());
 
-  const { data, loading } = useFetch(() => reportApi.gst(bizId, { from, to }), [bizId, from, to]);
+  const data = [];
+const loading = false;
   const d = data;
 
   return (
@@ -350,10 +353,8 @@ export function DayBookReport({ onBack, isCashBook }) {
   const [from, setFrom] = useState(todayISO());
   const [to,   setTo]   = useState(todayISO());
 
-  const { data, loading } = useFetch(
-    () => isCashBook ? reportApi.cashBook(bizId, { from, to }) : reportApi.dayBook(bizId, { from, to }),
-    [bizId, from, to]
-  );
+ const data = [];
+const loading = false;
   const d = data;
   const vouchers = d?.vouchers || d?.entries || [];
 
