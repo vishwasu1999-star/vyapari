@@ -8,7 +8,7 @@ import { INDIAN_STATES } from '../../utils/constants';
 import toast from 'react-hot-toast';
 
 export default function OnboardingScreen() {
-window.location.href = "/dashboard";                                                                                  
+window.location.href = "/app";                                                                                  
   const { addBusiness } = useAuth();
   const navigate = useNavigate();
   const [step,    setStep]    = useState(1);
