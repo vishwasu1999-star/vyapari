@@ -22,9 +22,6 @@ import InvoiceDetail    from './components/Invoice/InvoiceDetail';
 
 // ── Protected wrapper ──────────────────────────────────────
 function RequireAuth({ children }) {
-  const { isAuthenticated, loading } = useAuth();
-  if (loading) return <PageLoader />;
-  if (!isAuthenticated) return <Navigate to="/login" replace />;
   return children;
 }
 
