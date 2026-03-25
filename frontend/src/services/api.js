@@ -9,13 +9,16 @@ const api = axios.create({
   },
 });
 
-// ✅ ADD THIS (IMPORTANT)
+// ✅ token attach
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token"); // or accessToken
+  const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
+
+// ✅ ADD THIS LINE (VERY IMPORTANT)
+export const authApi = api;
 
 export default api;
