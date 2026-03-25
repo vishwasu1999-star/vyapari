@@ -9,7 +9,7 @@ const api = axios.create({
   },
 });
 
-// ✅ Attach token
+// Attach token
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -18,16 +18,10 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// ✅ EXPORT EVERYTHING (FINAL FIX)
+// ✅ ONLY ONCE (NO DUPLICATES)
 export const authApi = api;
 export const businessApi = api;
 export const partyApi = api;
 export const invoiceApi = api;
-
-export default api;;
-
-// ✅ EXPORTS (VERY IMPORTANT)
-export const authApi = api;
-export const businessApi = api;
 
 export default api;
