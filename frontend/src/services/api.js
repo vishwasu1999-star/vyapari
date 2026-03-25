@@ -18,6 +18,14 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// ✅ EXPORT EVERYTHING (FINAL FIX)
+export const authApi = api;
+export const businessApi = api;
+export const partyApi = api;
+export const invoiceApi = api;
+
+export default api;;
+
 // ✅ EXPORTS (VERY IMPORTANT)
 export const authApi = api;
 export const businessApi = api;
