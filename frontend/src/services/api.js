@@ -18,7 +18,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// ✅ EXPORT ALL POSSIBLE APIs (FINAL FIX)
+// ✅ EXPORT ALL (FINAL PERMANENT FIX)
 export const authApi = api;
 export const businessApi = api;
 export const partyApi = api;
@@ -26,5 +26,8 @@ export const invoiceApi = api;
 export const itemApi = api;
 export const expenseApi = api;
 export const reportApi = api;
+export const accountApi = api;   // ✅ THIS FIXES CURRENT ERROR
+export const paymentApi = api;
+export const userApi = api;
 
 export default api;
