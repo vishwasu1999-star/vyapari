@@ -18,10 +18,13 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// ✅ ONLY ONCE (NO DUPLICATES)
+// ✅ EXPORT ALL POSSIBLE APIs (FINAL FIX)
 export const authApi = api;
 export const businessApi = api;
 export const partyApi = api;
 export const invoiceApi = api;
+export const itemApi = api;
+export const expenseApi = api;
+export const reportApi = api;
 
 export default api;
