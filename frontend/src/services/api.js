@@ -9,7 +9,7 @@ const api = axios.create({
   },
 });
 
-// ✅ token attach
+// ✅ Attach token
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
@@ -18,7 +18,8 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// ✅ ADD THIS LINE (VERY IMPORTANT)
+// ✅ EXPORTS (VERY IMPORTANT)
 export const authApi = api;
+export const businessApi = api;
 
 export default api;
