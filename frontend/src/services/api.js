@@ -9,4 +9,13 @@ const api = axios.create({
   },
 });
 
+// ✅ ADD THIS (IMPORTANT)
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token"); // or accessToken
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 export default api;
